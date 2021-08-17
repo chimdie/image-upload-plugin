@@ -1,8 +1,14 @@
 {
-  "name": "img-upload",
-  "version": "1.0.0",
+  "name": "image-upload-plugin",
+  "version": "1.0.1",
   "description": "react package for image uploads",
   "author": "chimdie",
+  "keywords": [
+    "image",
+    "upload",
+    "plugin",
+    "file"
+  ],
   "license": "MIT",
   "repository": "chimdie/img-upload",
   "main": "dist/index.js",
@@ -24,7 +30,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^17.0.0",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -43,14 +50,12 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-scripts": "^3.4.1",
+    "styled-components": "^5.3.0"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "styled-components": "^5.3.0"
-  }
+  ]
 }
