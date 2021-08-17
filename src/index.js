@@ -60,7 +60,7 @@ const Image = styled.img`
   object-fit: cover;
 `
 
-export const Upload = () => {
+export const UploadLoader = () => {
   const [images, setImgs] = useState({})
   const [currentImg, setCurrentImg] = useState(undefined)
 
