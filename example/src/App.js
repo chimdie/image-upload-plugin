@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { ExampleComponent } from 'img-upload'
+import { Upload } from 'img-upload'
 import 'img-upload/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Upload/>
 }
 
 export default App
