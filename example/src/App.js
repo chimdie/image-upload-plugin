@@ -1,10 +1,20 @@
 import React from 'react'
 
-import { Upload } from 'img-upload'
-import 'img-upload/dist/index.css'
+import UploadLoader from 'image-upload-plugin'
 
 const App = () => {
-  return <Upload/>
+  function getImageFileObject(imageFile) {
+    console.log({ onAdd: imageFile })
+  }
+  function runAfterImageDelete(file) {
+    console.log({ onDele: file })
+  }
+  return (
+    <UploadLoader
+      onFileAdded={(img) => getImageFileObject(img)}
+      onFileRemoved={(img) => runAfterImageDelete(img)}
+    />
+  )
 }
 
 export default App
