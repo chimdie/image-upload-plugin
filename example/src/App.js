@@ -1,10 +1,13 @@
 import React from 'react'
 
-import { UploadLoader } from 'img-upload-plugin'
+import UploadLoader from 'img-upload'
 // import 'img-upload/dist/index.css'
 
 const App = () => {
-  return <UploadLoader/>
+  function getImageFileObject(imageFile) {
+    console.log({ imageFile })
+  }
+  return <UploadLoader onFileAdded={(img) => getImageFileObject(img)} />
 }
 
 export default App

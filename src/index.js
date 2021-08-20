@@ -60,23 +60,26 @@ const Image = styled.img`
   object-fit: cover;
 `
 
-export const UploadLoader = () => {
+const UploadLoader = ({ onFileAdded }) => {
   const [images, setImgs] = useState({})
   const [currentImg, setCurrentImg] = useState(undefined)
 
   const handleImageUpload = (e) => {
     if (e.target.files.length > 0) {
-      console.log({ img: images, eve: e.target.files.length })
+
       const imageObject = {
         file: e.target.files[0],
         dataUrl: URL.createObjectURL(e.target.files[0])
       }
+
       setImgs(() => imageObject)
     }
   }
 
+
   useEffect(() => {
     setCurrentImg(images)
+    if (onFileAdded) onFileAdded(images)
   }, [images])
   return (
     <Container>
@@ -116,3 +119,5 @@ export const UploadLoader = () => {
     </Container>
   )
 }
+
+export default UploadLoader
