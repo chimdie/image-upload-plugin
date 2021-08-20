@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { UploadLoader } from 'img-upload'
+import { UploadLoader } from 'img-upload-plugin'
 // import 'img-upload/dist/index.css'
 
 const App = () => {
