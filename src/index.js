@@ -99,7 +99,6 @@ const UploadLoader = ({ onFileAdded }) => {
                   fill='#848484'
                 />
               </svg>
-
               <Input
                 type='file'
                 name='upload'
