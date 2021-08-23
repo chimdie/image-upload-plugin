@@ -1,7 +1,7 @@
 import React from 'react'
 
-import UploadLoader from 'img-upload'
-// import 'img-upload/dist/index.css'
+import UploadLoader from 'image-upload-plugin'
+// import 'image-upload-plugin/dist/index.css'
 
 const App = () => {
   function getImageFileObject(imageFile) {
