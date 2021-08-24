@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
@@ -29,10 +31,19 @@ const Btn = styled.div`
   top: 0;
   right: 0;
   position: absolute;
+  /* background: transparent;
+  overflow: hidden; */
 
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+`
+
+const Button = styled.button`
+  border: none;
+  /* margin-top: -40px; */
+  background: transparent;
 `
 
 const Label = styled.label`
@@ -77,6 +88,12 @@ const UploadLoader = ({ onFileAdded }) => {
     }
   }
 
+  const handleDeleteImage = (e) => {
+    if (e.target.files.length !== null) {
+      setCurrentImg(() => '')
+    }
+  }
+
   useEffect(() => {
     setCurrentImg(images)
     if (onFileAdded) onFileAdded(images)
@@ -86,6 +103,15 @@ const UploadLoader = ({ onFileAdded }) => {
       <Main>
         {currentImg && (
           <ImgWrapper>
+            <Btn>
+              <Button onClick={handleDeleteImage}>
+                <svg height='20' width='20'>
+                  <g fill='none' stroke='grey'>
+                    <path strokeWidth='6' d='M5 60 l215 0' />
+                  </g>
+                </svg>
+              </Button>
+            </Btn>
             <Label htmlFor='upload'>
               <svg
                 width='50'
