@@ -1,6 +1,6 @@
 # image-upload-plugin
 
-> react package for image uploads
+> react package for uploading image 
 
 [![NPM](https://img.shields.io/npm/v/image-upload-plugin.svg)](https://www.npmjs.com/package/image-upload-plugin) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,7 +15,7 @@ npm install --save image-upload-plugin
 ```jsx
 import React, { Component } from 'react'
 
-import { UploadLoader } from 'image-upload-plugin'
+import UploadLoader from 'image-upload-plugin'
 
 class App extends Component {
   render() {
