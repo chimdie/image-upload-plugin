@@ -13,14 +13,12 @@ npm install --save image-upload-plugin
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 
 import UploadLoader from 'image-upload-plugin'
 
-class App extends Component {
-  render() {
-    return <UploadLoader />
-  }
+const App = () => {
+  return <UploadLoader />
 }
 ```
 
