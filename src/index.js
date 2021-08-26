@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -22,6 +22,8 @@ const ImgWrapper = styled.div`
   background: whitesmoke;
   border-radius: 10px;
   overflow: hidden;
+  height: 200px;
+  width: 200px;
 `
 
 const Btn = styled.div`
@@ -33,11 +35,12 @@ const Btn = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0;
+  z-index: 1;
 `
 
 const Button = styled.button`
-  border: none;
   background: transparent;
+  border: none;
   cursor: pointer;
 `
 
@@ -45,6 +48,7 @@ const Label = styled.label`
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 1;
   transform: translate(-50%, -50%);
   &:hover {
     cursor: pointer;
@@ -65,35 +69,36 @@ const Input = styled.input`
 
 const Image = styled.img`
   display: block;
-  border-radius: 10px;
   object-fit: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 `
 
-const UploadLoader = ({ onFileAdded }) => {
+const UploadLoader = ({ onFileAdded, onFileRemoved }) => {
   const ref = useRef()
-  const [images, setImgs] = useState({})
-  const [currentImg, setCurrentImg] = useState(undefined)
+  const [currentImg, setCurrentImg] = useState({})
 
   const handleImageUpload = (e) => {
-    console.log({ f: e.target.files })
     if (e.target.files.length > 0) {
       const imageObject = {
         file: e.target.files[0],
-        dataUrl: window.URL.createObjectURL(e.target.files[0])
+        dataUrl: URL.createObjectURL(e.target.files[0])
       }
-      setImgs(() => imageObject)
+      setCurrentImg((oldImage) => {
+        return { ...oldImage, ...imageObject }
+      })
+      if (onFileAdded) onFileAdded(currentImg)
     }
   }
 
   const handleDeleteImage = (e) => {
-    setCurrentImg((ref.current.value = null))
-    setImgs((ref.current.value = null))
+    if (onFileRemoved) onFileRemoved(currentImg)
+    ref.current.files = null
+    ref.current.value = ''
+    setCurrentImg({})
   }
 
-  useEffect(() => {
-    setCurrentImg(images)
-    if (onFileAdded) onFileAdded(images)
-  }, [images])
   return (
     <Container>
       <Main>
@@ -111,6 +116,7 @@ const UploadLoader = ({ onFileAdded }) => {
               </svg>
             </Button>
           </Btn>
+
           <Label htmlFor='upload'>
             <svg
               width='50'
@@ -124,23 +130,32 @@ const UploadLoader = ({ onFileAdded }) => {
                 fill='#848484'
               />
             </svg>
-            <Input
-              key={currentImg}
-              ref={ref}
-              type='file'
-              name='upload'
-              onChange={handleImageUpload}
-              accept='image/*'
-              id='upload'
-            />
+            {currentImg.bataUrl ? (
+              <React.Fragment />
+            ) : (
+              <Input
+                key={currentImg}
+                ref={ref}
+                type='file'
+                name='upload'
+                onChange={handleImageUpload}
+                accept='image/*'
+                id='upload'
+              />
+            )}
           </Label>
-          <Image
-            src={currentImg?.dataUrl}
-            alt={images?.dataUrl}
-            width={200}
-            height={200}
-            loading='lazy'
-          />
+
+          {currentImg.dataUrl ? (
+            <Image
+              src={currentImg?.dataUrl}
+              alt={currentImg?.dataUrl}
+              width={200}
+              height={200}
+              loading='lazy'
+            />
+          ) : (
+            <React.Fragment />
+          )}
         </ImgWrapper>
       </Main>
     </Container>
