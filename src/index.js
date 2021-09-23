@@ -92,7 +92,7 @@ const UploadLoader = ({ onFileAdded, onFileRemoved }) => {
     }
   }
 
-  const handleDeleteImage = (e) => {
+  const handleDeleteImage = () => {
     if (onFileRemoved) onFileRemoved(currentImg)
     ref.current.files = null
     ref.current.value = ''
